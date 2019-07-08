@@ -8,7 +8,7 @@ axios.defaults.withCredentials = true;
 
 //axios初始化：延迟时间，主路由地址
 let instance = axios.create({
-    baseURL: 'https://api.imjad.cn/cloudmusic/',
+    baseURL: 'https://api.imjad.cn/cloudmusic',
     timeout:1000,
 });
 
@@ -33,6 +33,7 @@ instance.interceptors.response.use((response) => {
 
 // 请求成功的回调
 function checkStatus(res) {
+    console.log('checkStatus' + res);
     //请求结束成功
     if(res.status === 200 || res.status === 304){
         return res.data;
@@ -47,6 +48,7 @@ function checkStatus(res) {
 
 // 请求失败的回调
 function checkCode(res) {
+    console.log('checkCode' + res);
     if(res.code === 0){
         throw new Error(res.msg);
     }
